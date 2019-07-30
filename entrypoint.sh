@@ -39,6 +39,11 @@ if [ -z "$WIKI_PUSH_MESSAGE" ]; then
 fi
 
 echo "Initializing the GIT"
+
+debugURL = "https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git"
+
+echo debugURL
+
 mkdir $TEMP_CLONE_FOLDER
 cd $TEMP_CLONE_FOLDER
 git init
