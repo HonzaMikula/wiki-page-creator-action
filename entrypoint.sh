@@ -59,4 +59,4 @@ echo "Pushing new pages"
 cd $TEMP_CLONE_FOLDER
 git add .
 git commit -m "$WIKI_PUSH_MESSAGE"
-git push --set-upstream https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master
+git push --set-upstream https://$ACTION_NAME:${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master
