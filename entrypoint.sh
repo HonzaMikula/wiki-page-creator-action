@@ -40,7 +40,7 @@ fi
 
 echo "Initializing the GIT"
 
-debugURL="https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git"
+debugURL="https://$GH_PAT@github.com/$OWNER/$REPO_NAME.wiki.git"
 
 echo $debugURL
 
