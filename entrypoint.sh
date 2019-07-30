@@ -38,6 +38,7 @@ if [ -z "$WIKI_PUSH_MESSAGE" ]; then
   WIKI_PUSH_MESSAGE='Auto Publish new pages'
 fi
 
+echo "Initializing the GIT"
 mkdir $TEMP_CLONE_FOLDER
 cd $TEMP_CLONE_FOLDER
 git init
@@ -46,6 +47,7 @@ git config user.email $ACTION_MAIL
 git pull https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git
 cd ..
 
+echo "Looking for release notes"
 for i in $(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{}' ';'); do
     echo $i
     if [[ ! " ${DOC_TO_SKIP[@]} " =~ " ${i} " ]]; then
@@ -55,8 +57,10 @@ for i in $(find $MD_FOLDER -maxdepth 1 -type f -name '*.md' -execdir basename '{
     fi
 done
 
-echo "Pushing new pages"
+echo "Pushing new pages: 0"
 cd $TEMP_CLONE_FOLDER
 git add .
+echo "Pushing new pages: 1"
 git commit -m "$WIKI_PUSH_MESSAGE"
-git push --set-upstream https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master --force
+echo "Pushing new pages: 2"
+git push --set-upstream https://${GH_PAT}@github.com/$OWNER/$REPO_NAME.wiki.git master
